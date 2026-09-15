@@ -24,5 +24,19 @@
     <ProjectReference Include="..\GDKLaunchShim\GDKLaunchShim.vcxproj" />
     <ProjectReference Include="..\WUTokenHelper\WUTokenHelper.vcxproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="VersionGetter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\GdkLinks\LICENSE" Link="VersionGetter\LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\GdkLinks\main.py" Link="VersionGetter\main.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\GdkLinks\README.md" Link="VersionGetter\README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

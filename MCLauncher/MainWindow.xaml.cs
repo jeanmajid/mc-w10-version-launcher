@@ -62,7 +62,7 @@ namespace MCLauncher {
 
             var versionsApiUWP = UserPrefs.VersionsApiUWP != "" ? UserPrefs.VersionsApiUWP : VERSIONS_API_UWP;
             var versionsApiGDK = UserPrefs.VersionsApiGDK != "" ? UserPrefs.VersionsApiGDK : VERSIONS_API_GDK;
-            _versions = new VersionList("versions_uwp.json", IMPORTED_VERSIONS_PATH, versionsApiUWP, this, VersionEntryPropertyChanged, "versions_gdk.json", versionsApiGDK);
+            _versions = new VersionList("versions_uwp.json", IMPORTED_VERSIONS_PATH, versionsApiUWP, this, VersionEntryPropertyChanged, "versions_gdk.json", versionsApiGDK, UserPrefs);
 
             InitializeComponent();
             DeleteAppxAfterDownloadOption.DataContext = this;
@@ -1285,6 +1285,12 @@ namespace MCLauncher {
             if (VersionTabs.SelectedItem == BetaTab && BetaTab.Visibility != Visibility.Visible) {
                 VersionTabs.SelectedItem = ReleaseTab;
             }
+            RewritePrefs();
+        }
+
+        private void AutoUpdateListLocally_Changed(object sender, RoutedEventArgs e)
+        {
+            UserPrefs.AutoUpdateListLocally = AutoUpdateListLocally.IsChecked;
             RewritePrefs();
         }
     }

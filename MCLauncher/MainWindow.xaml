@@ -116,6 +116,7 @@
                 <MenuItem Header="Delete installation packages after download to save space" IsCheckable="True" Name="DeleteAppxAfterDownloadOption" Checked="DeleteAppxAfterDownloadCheck_Changed" Unchecked="DeleteAppxAfterDownloadCheck_Changed" IsChecked="{Binding UserPrefs.DeleteAppxAfterDownload }" />
                 <MenuItem Header="Set version data endpoints..." Name="SetVersionListEndpoint" Click="MenuItemSetVersionListEndpointClicked" />
                 <MenuItem Header="Show legacy Beta versions tab" IsCheckable="True" Name="ShowBetaTabOption" Checked="ShowBetaTabOption_Changed" Unchecked="ShowBetaTabOption_Changed" IsChecked="{Binding UserPrefs.ShowLegacyBetaTab}" />
+                <MenuItem Header="AutoUpdateListLocally" IsCheckable="True" Name="AutoUpdateListLocally" Checked="AutoUpdateListLocally_Changed" Unchecked="AutoUpdateListLocally_Changed" IsChecked="{Binding UserPrefs.AutoUpdateListLocally}" />
             </MenuItem>
         </Menu>
         <TabControl x:Name="VersionTabs" Grid.Row="1" Margin="0,5,0,0" BorderThickness="0,1,0,0" Padding="0" Width="Auto">

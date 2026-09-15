@@ -14,5 +14,7 @@ namespace MCLauncher {
         public bool HasPreviouslyUsedGDK { get; set; } = false;
 
         public bool ShowLegacyBetaTab { get; set; } = false;
+
+        public bool AutoUpdateListLocally { get; set; } = false;
     }
 }
