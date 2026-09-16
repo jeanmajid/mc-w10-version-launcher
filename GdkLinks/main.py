@@ -4,7 +4,6 @@ import requests, os, json, subprocess
 debug = False
 
 urls_filename = "urls.json"
-urls_min_filename = "urls.min.json"
 
 cache_filename = "token_cache.bin"
 
@@ -29,11 +28,7 @@ def get_xbox_token() -> str:
 	# Auth from cache or interactive if debug
 	accounts = app.get_accounts()
 	if not accounts:
-		if (debug):
-			result = app.acquire_token_interactive(scopes=["XboxLive.signin"], prompt="select_account")
-		else:
-			print("No accounts found. Exiting.")
-			exit(1)
+		result = app.acquire_token_interactive(scopes=["XboxLive.signin"], prompt="select_account")
 	else:
 		result = app.acquire_token_silent(["XboxLive.signin"], account=accounts[0])
 
@@ -103,9 +98,14 @@ urls = {
 if os.path.exists(urls_filename):
 	urls = json.load(open(urls_filename, "r"))
 
-token_header = get_xbox_token()
+allVersionsFromRemoteArchiveRepo = requests.get("https://raw.githubusercontent.com/MinecraftBedrockArchiver/GdkLinks/refs/heads/master/urls.min.json").json();
 
-has_changes = False
+for version_name, remote_urls in allVersionsFromRemoteArchiveRepo.items():
+    for key, url in remote_urls.items():
+        if key not in urls[version_name]:
+            urls[version_name][key] = url
+
+token_header = get_xbox_token()
 
 for edition_name, content_id in versions.items():
 	response = requests.get(
@@ -136,19 +136,6 @@ for edition_name, content_id in versions.items():
 		
 		urls[edition_name][version] = found_urls
 
-		# Save urls to file
-		with open(urls_filename, "w") as f:
-			json.dump(urls, f, indent=4)
-		with open(urls_min_filename, "w") as f:
-			json.dump(urls, f)
 
-		# Create a commit with changes
-		commit_message = f"Add {edition_name} {version}"
-		if (debug): print(f"Would commit with message: {commit_message}")
-		if not (debug): subprocess.run(["git", "add", urls_filename, urls_min_filename])
-		if not (debug): subprocess.run(["git", "-c", "user.name='github-actions[bot]'", "-c", "user.email='github-actions[bot]@users.noreply.github.com'", "commit", "-m", commit_message])
-		has_changes = True
-
-# Push changes if any
-if has_changes:
-	if not (debug): subprocess.run(["git", "push", "origin"])
+with open(urls_filename, "w") as f:
+	json.dump(urls, f)

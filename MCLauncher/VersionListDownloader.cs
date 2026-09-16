@@ -10,7 +10,7 @@ namespace MCLauncher
         {
             string VersionGetterPath = Path.Combine(AppContext.BaseDirectory, "VersionGetter");
             string PythonFilePath = Path.Combine(VersionGetterPath, "main.py");
-            string URLPath= Path.Combine(VersionGetterPath, "urls.min.json");
+            string URLPath= Path.Combine(VersionGetterPath, "urls.json");
 
             ProcessStartInfo StartInfo = new()
             {
@@ -18,7 +18,8 @@ namespace MCLauncher
                 Arguments = PythonFilePath,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
-                CreateNoWindow = true
+                CreateNoWindow = true,
+                WorkingDirectory = VersionGetterPath
             };
 
             // add some error handling maybe
@@ -32,11 +33,9 @@ namespace MCLauncher
 
             await Process.WaitForExitAsync();
 
-            // Need to do account login shenanigans, oh no
-
             if (Process.ExitCode != 0)
             {
-                MessageBox.Show($"The version downloader failed: {await errorTask}");
+                MessageBox.Show($"The version downloader failed \nSTDOUT: {await outputTask}\nSTDERR: {await errorTask}");
             }
 
             return URLPath;

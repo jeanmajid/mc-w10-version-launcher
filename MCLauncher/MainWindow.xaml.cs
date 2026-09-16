@@ -67,6 +67,7 @@ namespace MCLauncher {
             InitializeComponent();
             DeleteAppxAfterDownloadOption.DataContext = this;
             ShowInstalledVersionsOnlyCheckbox.DataContext = this;
+            AutoUpdateListLocally.DataContext = this;
 
             var versionListViewRelease = Resources["versionListViewRelease"] as CollectionViewSource;
             versionListViewRelease.Filter += new FilterEventHandler((object sender, FilterEventArgs e) => {

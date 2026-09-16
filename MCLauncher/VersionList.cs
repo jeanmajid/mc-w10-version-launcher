@@ -166,7 +166,6 @@ namespace MCLauncher
             if (_userPrefs.AutoUpdateListLocally)
             {
                 var versionListPath = await VersionListDownloader.GetVersionList();
-                Console.WriteLine(versionListPath);
                 data = File.ReadAllText(versionListPath);
             }
             else
