@@ -1,6 +1,6 @@
 # MCLauncher
 
-This fork automatically optionally fetches new versions on launch, if you check the AutoUpdateListLocally under options. It will prompt you to login into a microsoft account.
+This fork automatically optionally fetches new versions on launch, if you check the AutoUpdateListLocally under options. It will prompt you to login into a microsoft account. I will not be trying to merge this into the [original repo](https://github.com/MCMrARM/mc-w10-version-launcher) as the solution is too messy in my opinion.
 
 This tool allows you to install several versions of Minecraft: Windows 10 Edition (Bedrock) side-by-side.
 This is useful if you want to test beta versions, releases or anything else side-by-side without needing to uninstall and reinstall the game.
