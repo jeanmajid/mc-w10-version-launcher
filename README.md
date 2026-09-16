@@ -1,5 +1,7 @@
 # MCLauncher
 
+This fork automatically optionally fetches new versions on launch, if you check the AutoUpdateListLocally under options. It will prompt you to login into a microsoft account.
+
 This tool allows you to install several versions of Minecraft: Windows 10 Edition (Bedrock) side-by-side.
 This is useful if you want to test beta versions, releases or anything else side-by-side without needing to uninstall and reinstall the game.
 
@@ -14,7 +16,7 @@ This tool will **not** help you to pirate the game; it requires that you have a 
 - [Microsoft Visual C++ Redistributable](https://aka.ms/vs/16/release/vc_redist.x64.exe) installed.
 
 ## Setup
-- Download the latest release from the [Releases](https://github.com/MCMrARM/mc-w10-version-launcher/releases) section. Unzip it somewhere.
+- Download the latest release from the [Releases](https://github.com/jeanmajid/mc-w10-version-launcher/releases) section. Unzip it somewhere.
 - Run `MCLauncher.exe` to start the launcher.
 
 ## Common Pitfalls and Issues
@@ -52,4 +54,4 @@ The project should build out of the box with VS as long as you haven't done anyt
 ## Frequently Asked Questions
 **Does this allow running multiple instances of Minecraft: Bedrock at the same time?**
 
-At the time of writing, no. It allows you to _install_ multiple versions, but only one version can run at a time.
+Yes
